@@ -18,6 +18,7 @@ def setMark(boardSel,square,mark):
     print(word_art.logo)
     #print(boardSel)
     return boardSel
+
 def checkWin(squareVal):
     if squareVal[1] == squareVal[2] and squareVal[2] == squareVal[3]:
         if squareVal[1] == 'X':
@@ -98,9 +99,13 @@ def compTurn(boardSel):
     boardSel = setMark(boardSel,1,'O')
     return boardSel,1
 def runGame():
-    squareVal = [0,0,0,0,0,0,0,0,0,0]
     selection = ''
     while selection != '3':
+        boardSel = ''
+        square = 0
+        playerScore = 0
+        computerScore = 0
+        squareVal = [0,0,0,0,0,0,0,0,0,0]
         gf.clearScreen()
         print(word_art.logo)
         print(board.board1 + board.board2)
@@ -132,8 +137,15 @@ def runGame():
                     square = int(input())
                     if square < 1 or square > 9:
                         raise ValueError
+
+                    if squareVal[square] == 'X' or squareVal[square] == 'O':
+                        gf.typingPrint('Wrong Selection, Square Taken. Try Again!\n') # NameError
+                        raise NameError
+
                     else:
                         squareVal[square] = 'X'
+                        checkWin(squareVal)
+
                 except (ValueError,NameError):
                     gf.typingPrint('Wrong Selection. Try Again!')
                     time.sleep(1)
@@ -142,21 +154,27 @@ def runGame():
                     boardSel = setMark(boardSel,square,'X')
                     print(boardSel)
                     print("Computer turn ...")
-                    spin_cursor()
+                    #spin_cursor()
                     boardSel,square = compTurn(boardSel)
                     squareVal[square] = 'O'
                     print(boardSel)
                 finally:
-                    pass
+                    winStatus = checkWin(squareVal)
+                    if winStatus == 'win':
+                        playerScore = playerScore + 1
+                        gf.typingPrint('You Win. Do you want to play again? (y/n): ')
+                        playAgain = input()
+                        if playAgain == 'y' or playAgain == 'Y':
+                            pass
+                        elif playAgain == 'n' or playAgain == 'N':
+                            break
+                        else:
+                            gf.typingPrint('Wrong Selection. Try Again!')
+                            time.sleep(1)
+                            break
+                    elif winStatus == 'lose':
+                        computerScore = computerScore + 1
+                        break
+                    else:
+                        pass
 
-
-#print(board.board1)
-#board.board1 = board.board1.replace('5','X')
-"""
-text = list(board)
-
-print(text)
-text[5]='x'
-text = "".join(text)
-print(text)
-"""
