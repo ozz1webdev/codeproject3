@@ -1,32 +1,13 @@
 from os import system, name
 import time,sys
-import board,word_art,ui
+import word_art,ui,game
+import globalFunc as gf
 
-#define typingtext effect
-def typingPrint(text):
-    for character in text:
-        sys.stdout.write(character)
-        sys.stdout.flush()
-        time.sleep(0.05)
 
-def typingInput(text):
-    for character in text:
-        sys.stdout.write(character)
-        sys.stdout.flush()
-        time.sleep(0.05)
-        value = input()  
-        return value  
-
-#Clear The screen
-def clearScreen():
-    if name == 'nt':
-        _ = system('cls')
-    else:
-        _ = system('clear')
-clearScreen()
+gf.clearScreen()
 
 def mainScreen():
-    clearScreen()
+    gf.clearScreen()
     print(word_art.logo)
     print(ui.menu)
     menu_selection = input("Select your option: ")
@@ -35,7 +16,7 @@ def mainScreen():
 print(f"\033[1;34;40m {word_art.logo}")
 
 #print welcome text
-typingPrint("Welcome to Tic Tac Toe Game have fun\n")
+gf.typingPrint("Welcome to Tic Tac Toe Game have fun\n")
 print("------------------------------------\n")
 
 #spining cursor
@@ -49,37 +30,38 @@ def spin_cursor():
             time.sleep(0.2)
 
 #print menu to user
-menu_selection = ''
+menu_selection = '0'
 while menu_selection != 3:
-    clearScreen()
-    print(word_art.logo)
-    print(ui.menu)
-    menu_selection = input("Select your option: ")
+    try:
+        gf.clearScreen() #clear screen
+        print(word_art.logo) #print the logo
+        print(ui.menu) #print the menu
+        menu_selection = input("Select your option: ") #user menu selection
 
-    if menu_selection == '1':
+    except (RuntimeError,ValueError):
+        print("Wrong Selection. Try Again!")
+        time.sleep(20)
         pass
+    
+    else:
+        if menu_selection == '1': #start the game
+            game.runGame()
 
-    if menu_selection == '2':
-        clearScreen()
-        print(word_art.logo)
-        print(ui.rules)
-        try:
-            input("Press enter to continue ...")
-        except SyntaxError:
+        elif menu_selection == '2':   #print rules
+            gf.clearScreen()
+            print(word_art.logo)
+            print(ui.rules)
+            try:
+                input("Press ENTER to continue ...")
+            except SyntaxError:
+                pass
+
+        elif menu_selection == '3': #exit the game
+            gf.typingPrint("Good Bye!")
+            break
+        else:
+            print("Wrong Selection. Try Again!")
+            time.sleep(2)
             pass
-
-    if menu_selection == '3':
-        typingPrint("Good Bye!")
-        break
-
-
-#print(board.board1)
-#board.board1 = board.board1.replace('5','X')
-"""
-text = list(board)
-
-print(text)
-text[5]='x'
-text = "".join(text)
-print(text)
-"""
+    finally:
+        pass
