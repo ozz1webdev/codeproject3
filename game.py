@@ -1,8 +1,6 @@
 import board,word_art
 import globalFunc as gf
 import sys,time
-#global variables
-boardSel = None
 
 #spining cursor
 def spin_cursor():
@@ -14,12 +12,19 @@ def spin_cursor():
             sys.stdout.flush()
             time.sleep(0.2)
 
-def setMark(square,mark):
-    boardSel = boardSel.replace(square,mark)
+def setMark(boardSel,square,mark):
+    boardSel = boardSel.replace(str(square),mark)
     gf.clearScreen()
     print(word_art.logo)
-    print(boardSel)
+    #print(boardSel)
+    return boardSel
+
+def compTurn(boardSel):
+    print("compTurn func")
+    boardSel = setMark(boardSel,1,'O')
+    return boardSel,1
 def runGame():
+    squareVal = [0,0,0,0,0,0,0,0,0,0]
     selection = ''
     while selection != '3':
         gf.clearScreen()
@@ -43,26 +48,32 @@ def runGame():
             time.sleep(1)
             pass
         else:
-            gf.clearScreen()
-            print(word_art.logo)
-            print(boardSel)
-            gf.typingPrint('Your turn enter Square Number: ')
-            try:
-                square = int(input())
-                if square < 1 or square > 9:
-                    raise ValueError
-            except (ValueError,NameError):
-                gf.typingPrint('Wrong Selection. Try Again!')
-                time.sleep(1)
-                pass
-            else:
-                setMark(square,'X')
-#            square = input()
-#            setMark(square,'X')
-            finally:
-                print("Computer turn ...")
-                spin_cursor()
-                input()
+            while True:
+                gf.clearScreen()
+                print(word_art.logo)
+                print(boardSel)
+                print(squareVal)                    
+                gf.typingPrint('Your turn enter Square Number: ')
+                try:
+                    square = int(input())
+                    if square < 1 or square > 9:
+                        raise ValueError
+                    else:
+                        squareVal[square] = 'X'
+                except (ValueError,NameError):
+                    gf.typingPrint('Wrong Selection. Try Again!')
+                    time.sleep(1)
+                    pass
+                else:
+                    boardSel = setMark(boardSel,square,'X')
+                    print(boardSel)
+                    print("Computer turn ...")
+                    spin_cursor()
+                    boardSel,square = compTurn(boardSel)
+                    squareVal[square] = 'O'
+                    print(boardSel)
+                finally:
+                    pass
 
 
 #print(board.board1)
