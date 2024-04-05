@@ -22,74 +22,74 @@ def setMark(boardSel,square,mark):
 def checkWin(squareVal):
     if squareVal[1] == squareVal[2] and squareVal[2] == squareVal[3]:
         if squareVal[1] == 'X':
-            gf.typingPrint(word_art.you_win)
+            print(word_art.you_win)
             time.sleep(1)
             return 'win'
         elif squareVal[1] == 'O':
-            gf.typingPrint(word_art.you_lose)
+            print(word_art.you_lose)
             time.sleep(1)
             return 'lose'
     elif squareVal[4] == squareVal[5] and squareVal[5] == squareVal[6]:
         if squareVal[4] == 'X':
-            gf.typingPrint(word_art.you_win)
+            print(word_art.you_win)
             time.sleep(1)
             return 'win'
         elif squareVal[4] == 'O':
-            gf.typingPrint(word_art.you_lose)
+            print(word_art.you_lose)
             time.sleep(1)
             return 'lose'
     elif squareVal[7] == squareVal[8] and squareVal[8] == squareVal[9]:
         if squareVal[7] == 'X':
-            gf.typingPrint(word_art.you_win)
+            print(word_art.you_win)
             time.sleep(1)
             return 'win'
         elif squareVal[7] == 'O':
-            gf.typingPrint(word_art.you_lose)
+            print(word_art.you_lose)
             time.sleep(1)
             return 'lose'
     elif squareVal[1] == squareVal[4] and squareVal[4] == squareVal[7]:
         if squareVal[1] == 'X':
-            gf.typingPrint(word_art.you_win)
+            print(word_art.you_win)
             time.sleep(1)
             return 'win'
         elif squareVal[1] == 'O':
-            gf.typingPrint(word_art.you_lose)
+            print(word_art.you_lose)
             time.sleep(1)
             return 'lose'
     elif squareVal[2] == squareVal[5] and squareVal[5] == squareVal[8]:
         if squareVal[2] == 'X':
-            gf.typingPrint(word_art.you_win)
+            print(word_art.you_win)
             time.sleep(1)
             return 'win'
         elif squareVal[2] == 'O':
-            gf.typingPrint(word_art.you_lose)
+            print(word_art.you_lose)
             time.sleep(1)
             return 'lose'
     elif squareVal[3] == squareVal[6] and squareVal[6] == squareVal[9]:
         if squareVal[3] == 'X':
-            gf.typingPrint(word_art.you_win)
+            print(word_art.you_win)
             time.sleep(1)
             return 'win'
         elif squareVal[3] == 'O':
-            gf.typingPrint(word_art.you_lose)
+            print(word_art.you_lose)
             time.sleep(1)
             return 'lose'
     elif squareVal[1] == squareVal[5] and squareVal[5] == squareVal[9]:
         if squareVal[1] == 'X':
-            gf.typingPrint(word_art.you_win)
+            print(word_art.you_win)
             time.sleep(1)
             return 'win'
         elif squareVal[1] == 'O':
-            gf.typingPrint(word_art.you_lose)
+            print(word_art.you_lose)
             time.sleep(1)
             return 'lose'
     elif squareVal[3] == squareVal[5] and squareVal[5] == squareVal[7]:
         if squareVal[3] == 'X':
-            gf.typingPrint(word_art.you_win)
+            print(word_art.you_win)
             time.sleep(1)
             return 'win'
         elif squareVal[3] == 'O':
-            gf.typingPrint(word_art.you_lose)
+            print(word_art.you_lose)
             time.sleep(1)
             return 'lose'
     else:
@@ -101,8 +101,6 @@ def compTurn(boardSel):
 def runGame():
     selection = ''
     while selection != '3':
-        boardSel = ''
-        square = 0
         playerScore = 0
         computerScore = 0
         squareVal = [0,0,0,0,0,0,0,0,0,0]
@@ -132,8 +130,8 @@ def runGame():
                 print(word_art.logo)
                 print(boardSel)
                 print(squareVal)                    
-                gf.typingPrint('Your turn enter Square Number: ')
                 try:
+                    gf.typingPrint('Your turn enter Square Number: ')
                     square = int(input())
                     if square < 1 or square > 9:
                         raise ValueError
@@ -144,7 +142,6 @@ def runGame():
 
                     else:
                         squareVal[square] = 'X'
-                        checkWin(squareVal)
 
                 except (ValueError,NameError):
                     gf.typingPrint('Wrong Selection. Try Again!')
@@ -153,11 +150,13 @@ def runGame():
                 else:
                     boardSel = setMark(boardSel,square,'X')
                     print(boardSel)
+                    checkWin(squareVal)
                     print("Computer turn ...")
                     #spin_cursor()
                     boardSel,square = compTurn(boardSel)
                     squareVal[square] = 'O'
                     print(boardSel)
+
                 finally:
                     winStatus = checkWin(squareVal)
                     if winStatus == 'win':
@@ -165,7 +164,9 @@ def runGame():
                         gf.typingPrint('You Win. Do you want to play again? (y/n): ')
                         playAgain = input()
                         if playAgain == 'y' or playAgain == 'Y':
-                            pass
+                            squareVal = [0,0,0,0,0,0,0,0,0,0]
+                            runGame()
+                            break
                         elif playAgain == 'n' or playAgain == 'N':
                             break
                         else:
