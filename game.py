@@ -1,4 +1,4 @@
-import board,word_art
+import board,word_art,ai
 import globalFunc as gf
 import sys,time
 
@@ -94,13 +94,7 @@ def checkWin(squareVal):
             return 'lose'
     else:
         return 'continue'
-def compTurn(boardSel,squareval):
-    print("compTurn func")
-    pos = 1
-    if 
 
-    boardSel = setMark(boardSel,1,'O')
-    return boardSel,pos
 def runGame():
     selection = ''
     while selection != '3':
@@ -156,7 +150,7 @@ def runGame():
                     checkWin(squareVal)
                     print("Computer turn ...")
                     #spin_cursor()
-                    boardSel,square = compTurn(boardSel,squareVal)
+                    boardSel,square = ai.compTurn(boardSel,squareVal)
                     squareVal[square] = 'O'
                     print(boardSel)
 
