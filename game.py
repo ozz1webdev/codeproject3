@@ -7,7 +7,7 @@ from colorama import Fore
 def spin_cursor():
     spin = ['\\', '|', '/', '-', '\\', '|', '/', '-' ]
     print("Computer Calculating ...")
-    for e in range (5):
+    for e in range (1):
         for i in range(len(spin)):
             sys.stdout.write("\b%s" % spin[i])
             sys.stdout.flush()
@@ -92,20 +92,15 @@ def checkWin(squareVal):
             print(word_art.you_lose)
             time.sleep(1)
             return 'lose'
+
+    for i in range(1, len(squareVal)):
+        if squareVal[i] == 0:
+            return 'continue'
     else:
-        
-        if squareVal[1] != 0:
-            if squareVal[2] != 0:
-                if squareVal[3] != 0:
-                    if squareVal[4] != 0:
-                        if squareVal[5] != 0:
-                            if squareVal[6] != 0:
-                                if squareVal[7] != 0:
-                                    if squareVal[8] != 0:
-                                        if squareVal[9] != 0:
-                                            return 'draw'
-        else:
-            return "continue"
+        print(word_art.draw)
+        time.sleep(1)
+        return 'draw'
+
 def addColors(boardSel):
     boardSel.replace('X','\033[1;31;40m X')# \033[1;34;40m')
     boardSel.replace('O','\033[1;32;40m O')# \033[1;34;40m')
@@ -139,7 +134,7 @@ def runGame():
             time.sleep(1)
             pass
         else:
-            while True:
+            while True: #game loop
                 gf.clearScreen()
                 print(word_art.logo)
                 addColors(boardSel)
@@ -165,17 +160,16 @@ def runGame():
                 else:
                     boardSel = setMark(boardSel,square,'X')
                     print(boardSel)
-                    winStatus = checkWin(squareVal)
-                    
-                    if winStatus == "continue":
-                        print("Computer turn ...")
-                        #spin_cursor()
-                        boardSel,square = ai.compTurn(boardSel,squareVal)
-                        squareVal[square] = 'O'
-                        print(boardSel)
 
                 finally:
                     winStatus = checkWin(squareVal)
+                    if winStatus == "continue":
+                        print("Computer turn ...")
+                        spin_cursor()
+                        boardSel,square = ai.compTurn(boardSel,squareVal)
+                        squareVal[square] = 'O'
+                        winStatus = checkWin(squareVal)
+                        print(boardSel)
                     if winStatus == 'win':
                         playerScore = playerScore + 1
                         gf.typingPrint('You Win. Do you want to play again? (y/n): ')
