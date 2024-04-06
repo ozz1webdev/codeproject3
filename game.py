@@ -94,10 +94,13 @@ def checkWin(squareVal):
             return 'lose'
     else:
         return 'continue'
-def compTurn(boardSel):
+def compTurn(boardSel,squareval):
     print("compTurn func")
+    pos = 1
+    if 
+
     boardSel = setMark(boardSel,1,'O')
-    return boardSel,1
+    return boardSel,pos
 def runGame():
     selection = ''
     while selection != '3':
@@ -153,7 +156,7 @@ def runGame():
                     checkWin(squareVal)
                     print("Computer turn ...")
                     #spin_cursor()
-                    boardSel,square = compTurn(boardSel)
+                    boardSel,square = compTurn(boardSel,squareVal)
                     squareVal[square] = 'O'
                     print(boardSel)
 
