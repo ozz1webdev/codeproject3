@@ -1,7 +1,8 @@
 import board,word_art,ai
 import globalFunc as gf
 import sys,time
-import colorama as color
+from colorama import Fore
+
 #spining cursor
 def spin_cursor():
     spin = ['\\', '|', '/', '-', '\\', '|', '/', '-' ]
@@ -16,7 +17,6 @@ def setMark(boardSel,square,mark):
     boardSel = boardSel.replace(str(square),mark)
     gf.clearScreen()
     print(word_art.logo)
-    #print(boardSel)
     return boardSel
 
 def checkWin(squareVal):
@@ -93,7 +93,30 @@ def checkWin(squareVal):
             time.sleep(1)
             return 'lose'
     else:
-        return 'continue'
+        try:
+            draw = False
+            if squareVal[1] == 'X' or squareVal[1] == '0':
+                if squareVal[2] == 'X' or squareVal[2] == '0':
+                    if squareVal[3] == 'X' or squareVal[3] == '0':
+                        if squareVal[4] == 'X' or squareVal[4] == '0':
+                            if squareVal[5] == 'X' or squareVal[5] == '0':
+                                if squareVal[6] == 'X' or squareVal[6] == '0':
+                                    if squareVal[7] == 'X' or squareVal[7] == '0':
+                                        if squareVal[8] == 'X' or squareVal[8] == '0':
+                                            if squareVal[9] == 'X' or squareVal[9] == '0':
+                                                draw = True
+        except:
+            pass
+        else:
+            if draw == True:
+                return 'draw'
+        finally:
+            return 'continue'        
+def addColors(boardSel):
+    boardSel.replace('X','\033[1;31;40m X')# \033[1;34;40m')
+    boardSel.replace('O','\033[1;32;40m O')# \033[1;34;40m')
+            
+    return boardSel
 
 def runGame():
     selection = ''
@@ -125,8 +148,9 @@ def runGame():
             while True:
                 gf.clearScreen()
                 print(word_art.logo)
+                addColors(boardSel)
                 print(boardSel)
-                print(squareVal)                    
+                print(squareVal) 
                 try:
                     gf.typingPrint('Your turn enter Square Number: ')
                     square = int(input())
@@ -163,16 +187,43 @@ def runGame():
                         if playAgain == 'y' or playAgain == 'Y':
                             squareVal = [0,0,0,0,0,0,0,0,0,0]
                             runGame()
-                            break
+                            
                         elif playAgain == 'n' or playAgain == 'N':
-                            break
+                            squareVal = [0,0,0,0,0,0,0,0,0,0]
+                            
                         else:
                             gf.typingPrint('Wrong Selection. Try Again!')
                             time.sleep(1)
-                            break
+                            
                     elif winStatus == 'lose':
                         computerScore = computerScore + 1
-                        break
+                        gf.typingPrint('You Lose. Do you want to play again? (y/n): ')
+                        playAgain = input()
+                        if playAgain == 'y' or playAgain == 'Y':
+                            squareVal = [0,0,0,0,0,0,0,0,0,0]
+                            runGame()
+                            
+                        elif playAgain == 'n' or playAgain == 'N':
+                            squareVal = [0,0,0,0,0,0,0,0,0,0]
+                            
+                        else:
+                            gf.typingPrint('Wrong Selection. Try Again!')
+                            time.sleep(1)
+                            
+                    elif winStatus == 'draw':
+                        gf.typingPrint('Draw. Do you want to play again? (y/n): ')
+                        playAgain = input()
+                        if playAgain == 'y' or playAgain == 'Y':
+                            squareVal = [0,0,0,0,0,0,0,0,0,0]
+                            runGame()
+                            
+                        elif playAgain == 'n' or playAgain == 'N':
+                            squareVal = [0,0,0,0,0,0,0,0,0,0]
+                            
+                        else:
+                            gf.typingPrint('Wrong Selection. Try Again!')
+                            time.sleep(1)
+                            
                     else:
                         pass
 
