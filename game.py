@@ -1,7 +1,7 @@
 import board,word_art,ai
 import globalFunc as gf
 import sys,time
-
+import colorama as color
 #spining cursor
 def spin_cursor():
     spin = ['\\', '|', '/', '-', '\\', '|', '/', '-' ]

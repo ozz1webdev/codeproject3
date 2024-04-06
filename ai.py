@@ -7,51 +7,51 @@ def compTurn(boardSel,squareval):
 #check if player 1 can win
     if squareval[1] == 'X' and squareval[2] == 'X':
         pos = 3
-    if squareval[1] == 'X' and squareval[3] == 'X':
+    elif squareval[1] == 'X' and squareval[3] == 'X':
         pos = 2
-    if squareval[2] == 'X' and squareval[3] == 'X':
+    elif squareval[2] == 'X' and squareval[3] == 'X':
         pos = 1
-    if squareval[4] == 'X' and squareval[5] == 'X':
+    elif squareval[4] == 'X' and squareval[5] == 'X':
         pos = 6
-    if squareval[4] == 'X' and squareval[6] == 'X':
+    elif squareval[4] == 'X' and squareval[6] == 'X':
         pos = 5
-    if squareval[5] == 'X' and squareval[6] == 'X':
+    elif squareval[5] == 'X' and squareval[6] == 'X':
         pos = 4
-    if squareval[7] == 'X' and squareval[8] == 'X':
+    elif squareval[7] == 'X' and squareval[8] == 'X':
         pos = 9
-    if squareval[7] == 'X' and squareval[9] == 'X':
+    elif squareval[7] == 'X' and squareval[9] == 'X':
         pos = 8
-    if squareval[8] == 'X' and squareval[9] == 'X':
+    elif squareval[8] == 'X' and squareval[9] == 'X':
         pos = 7
-    if squareval[1] == 'X' and squareval[4] == 'X':
+    elif squareval[1] == 'X' and squareval[4] == 'X':
         pos = 7
-    if squareval[1] == 'X' and squareval[7] == 'X':
+    elif squareval[1] == 'X' and squareval[7] == 'X':
         pos = 4
-    if squareval[4] == 'X' and squareval[7] == 'X':
+    elif squareval[4] == 'X' and squareval[7] == 'X':
         pos = 1
-    if squareval[2] == 'X' and squareval[5] == 'X':
-        pos = 8
-    if squareval[2] == 'X' and squareval[8] == 'X':
+    elif squareval[2] == 'X' and squareval[5] == 'X':
+        pos = 9
+    elif squareval[2] == 'X' and squareval[8] == 'X':
         pos = 5
-    if squareval[5] == 'X' and squareval[8] == 'X':
+    elif squareval[5] == 'X' and squareval[8] == 'X':
         pos = 2
-    if squareval[3] == 'X' and squareval[6] == 'X':
+    elif squareval[3] == 'X' and squareval[6] == 'X':
         pos = 9
-    if squareval[3] == 'X' and squareval[9] == 'X':
+    elif squareval[3] == 'X' and squareval[9] == 'X':
         pos = 6
-    if squareval[6] == 'X' and squareval[9] == 'X':
+    elif squareval[6] == 'X' and squareval[9] == 'X':
         pos = 3
-    if squareval[1] == 'X' and squareval[5] == 'X':
+    elif squareval[1] == 'X' and squareval[5] == 'X':
         pos = 9
-    if squareval[1] == 'X' and squareval[9] == 'X':
+    elif squareval[1] == 'X' and squareval[9] == 'X':
         pos = 5
-    if squareval[5] == 'X' and squareval[9] == 'X':
+    elif squareval[5] == 'X' and squareval[9] == 'X':
         pos = 1
-    if squareval[3] == 'X' and squareval[5] == 'X':
+    elif squareval[3] == 'X' and squareval[5] == 'X':
         pos = 7
-    if squareval[3] == 'X' and squareval[7] == 'X':
+    elif squareval[3] == 'X' and squareval[7] == 'X':
         pos = 5    
-    if squareval[5] == 'X' and squareval[7] == 'X':
+    elif squareval[5] == 'X' and squareval[7] == 'X':
         pos = 3
 #choise square
     if squareval[1] != 'X' and squareval[1] != 'O':
