@@ -93,25 +93,19 @@ def checkWin(squareVal):
             time.sleep(1)
             return 'lose'
     else:
-        try:
-            draw = False
-            if squareVal[1] == 'X' or squareVal[1] == '0':
-                if squareVal[2] == 'X' or squareVal[2] == '0':
-                    if squareVal[3] == 'X' or squareVal[3] == '0':
-                        if squareVal[4] == 'X' or squareVal[4] == '0':
-                            if squareVal[5] == 'X' or squareVal[5] == '0':
-                                if squareVal[6] == 'X' or squareVal[6] == '0':
-                                    if squareVal[7] == 'X' or squareVal[7] == '0':
-                                        if squareVal[8] == 'X' or squareVal[8] == '0':
-                                            if squareVal[9] == 'X' or squareVal[9] == '0':
-                                                draw = True
-        except:
-            pass
+        
+        if squareVal[1] != 0:
+            if squareVal[2] != 0:
+                if squareVal[3] != 0:
+                    if squareVal[4] != 0:
+                        if squareVal[5] != 0:
+                            if squareVal[6] != 0:
+                                if squareVal[7] != 0:
+                                    if squareVal[8] != 0:
+                                        if squareVal[9] != 0:
+                                            return 'draw'
         else:
-            if draw == True:
-                return 'draw'
-        finally:
-            return 'continue'        
+            return "continue"
 def addColors(boardSel):
     boardSel.replace('X','\033[1;31;40m X')# \033[1;34;40m')
     boardSel.replace('O','\033[1;32;40m O')# \033[1;34;40m')
@@ -171,12 +165,14 @@ def runGame():
                 else:
                     boardSel = setMark(boardSel,square,'X')
                     print(boardSel)
-                    checkWin(squareVal)
-                    print("Computer turn ...")
-                    #spin_cursor()
-                    boardSel,square = ai.compTurn(boardSel,squareVal)
-                    squareVal[square] = 'O'
-                    print(boardSel)
+                    winStatus = checkWin(squareVal)
+                    
+                    if winStatus == "continue":
+                        print("Computer turn ...")
+                        #spin_cursor()
+                        boardSel,square = ai.compTurn(boardSel,squareVal)
+                        squareVal[square] = 'O'
+                        print(boardSel)
 
                 finally:
                     winStatus = checkWin(squareVal)
