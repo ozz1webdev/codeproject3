@@ -1,6 +1,18 @@
 from os import system, name
 import time,sys,board
 
+
+score = {
+    'player': 0,
+    'computer': 0,
+    'draw': 0
+}
+def addScore(winner):
+    score[winner] += 1
+
+def getScore():
+    vars = [score['player'],score['computer'],score['draw']]
+    return vars
 #define typingtext effect
 def typingPrint(text):
     for character in text:

@@ -128,8 +128,13 @@ def checkWin(squareVal):
         return 'draw'
 
 
+
 def runGame():
     selection = ''
+    playerScore = gf.getScore()[0]
+    computerScore = gf.getScore()[1]
+    draw = gf.getScore()[2]
+
     while selection != '3':
         squareVal = [0,0,0,0,0,0,0,0,0,0]
         gf.clearScreen()
@@ -155,17 +160,12 @@ def runGame():
             time.sleep(1)
             pass
         else:
-            playerScore = 0
-            computerScore = 0
-            draw = 0
             while True: #game loop
                 gf.clearScreen()
                 print(word_art.logo)
-                print(f"Score :    Player : {playerScore}     Computer : {computerScore}     Draw : {draw}")
+                print(f"Player : "+Fore.RED+str(playerScore)+Fore.BLUE + "   Computer : "+Fore.GREEN+str(computerScore)+Fore.BLUE + "   Draw : "+str(draw)+"\n")
+                print("___________________________________________________")
                 print(boardSel)
-                #boardSel.replace('X','\033[1;31;40m X'+'\033[1;34;40m') # \033[1;34;40m')
-                #boardSel.replace('O','\033[1;32;40m O')# \033[1;34;40m')
-                #print(squareVal) 
                 while True:
                     try:
                         gf.typingPrint('Your turn enter Square Number: ')
@@ -183,7 +183,6 @@ def runGame():
                         pass
                     else:
                         squareVal[square] = 'X'
-                        #boardSel = setMark(boardNr,boardSel,square,'\033[1;31;40m'+ 'X' + '\033[1;34;40m')
                         boardSel = setMark(squareVal,boardNr,boardSel,int(square),Fore.RED + "X " + Fore.BLUE + "\b")
                         print(boardSel)
                         break
@@ -191,14 +190,13 @@ def runGame():
                 if winStatus == "continue":
                     print("Computer turn ...")
                     spin_cursor()
-                    #boardSel,square = ai.compTurn(boardNr,boardSel,squareVal)
                     compPos = ai.compTurn(squareVal)
                     squareVal[compPos] = 'O'
                     boardSel = setMark(squareVal,boardNr,boardSel,int(compPos),Fore.GREEN + "O " + Fore.BLUE + "\b")
                     winStatus = checkWin(squareVal)
                     print(boardSel)
                 if winStatus == 'win':
-                    playerScore = playerScore + 1
+                    gf.addScore('player')
                     gf.typingPrint('You Win. Do you want to play again? (y/n): ')
                     playAgain = input()
                     if playAgain == 'y' or playAgain == 'Y' or playAgain == 'yes' or playAgain == 'YES':
@@ -207,13 +205,13 @@ def runGame():
                             
                     elif playAgain == 'n' or playAgain == 'N' or playAgain == 'no' or playAgain == 'NO':
                         squareVal = [0,0,0,0,0,0,0,0,0,0]
-                        
+                        break
                     else:
                         gf.typingPrint('Wrong Selection. Try Again!')
                         time.sleep(1)
                         
                 elif winStatus == 'lose':
-                    computerScore = computerScore + 1
+                    gf.addScore('computer')
                     gf.typingPrint('You Lose. Do you want to play again? (y/n): ')
                     playAgain = input()
                     if playAgain == 'y' or playAgain == 'Y' or playAgain == 'yes' or playAgain == 'YES':
@@ -222,13 +220,13 @@ def runGame():
                         
                     elif playAgain == 'n' or playAgain == 'N' or playAgain == 'no' or playAgain == 'NO':
                         squareVal = [0,0,0,0,0,0,0,0,0,0]
-                        
+                        break
                     else:
                         gf.typingPrint('Wrong Selection. Try Again!')
                         time.sleep(1)
                         
                 elif winStatus == 'draw':
-                    draw = draw + 1
+                    gf.addScore('draw')
                     gf.typingPrint('Draw. Do you want to play again? (y/n): ')
                     playAgain = input()
                     if playAgain == 'y' or playAgain == 'Y' or playAgain == 'yes' or playAgain == 'YES':
@@ -237,7 +235,7 @@ def runGame():
                         
                     elif playAgain == 'n' or playAgain == 'N' or playAgain == 'no' or playAgain == 'NO':
                         squareVal = [0,0,0,0,0,0,0,0,0,0]
-                        
+                        break
                     else:
                         gf.typingPrint('Wrong Selection. Try Again!')
                         time.sleep(1)
