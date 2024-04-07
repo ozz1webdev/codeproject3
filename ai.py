@@ -165,14 +165,14 @@ def compTurn(squareval):
                 elif squareval[3] == 0:
                     pos = 3
                     break
-                elif squareval[5] == 0:
-                    pos = 5
+                elif squareval[9] == 0:
+                    pos = 9
                     break
                 elif squareval[7] == 0:
                     pos = 7
                     break
-                elif squareval[9] == 0:
-                    pos = 9
+                elif squareval[5] == 0:
+                    pos = 5
                     break
                 elif squareval[2] == 0:
                     pos = 2

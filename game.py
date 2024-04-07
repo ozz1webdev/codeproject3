@@ -156,10 +156,12 @@ def runGame():
                 boardNr = 2
                 pass
             elif board_selection == '3':
+                gf.clearScreen()
+                print(word_art.logo)
                 break
             else:
                 raise ValueError
-        except (ValueError,NameError):
+        except (ValueError,NameError,KeyboardInterrupt):
             gf.typingPrint('Wrong Selection. Try Again!')
             time.sleep(1)
             pass
@@ -176,7 +178,7 @@ def runGame():
                     if playFirst == 'y' or playFirst == 'Y' or playFirst == 'yes' or playFirst == 'Yes':
                         playFirst = False
                         break
-                    else :
+                    elif playFirst == 'n' or playFirst == 'N' or playFirst == 'no' or playFirst == 'No':
                         gf.typingPrint("Computer will play first.\n")
                         time.sleep(1)
                         spin_cursor()
@@ -189,6 +191,11 @@ def runGame():
                         print(boardSel)
                         playFirst = False
                         break
+                    else:
+                        gf.typingPrint("Wrong Selection. Try Again!\n")
+                        time.sleep(1)
+                        playFirst = True
+                        pass
                 while True:
                     
                     try:
@@ -203,7 +210,7 @@ def runGame():
                             gf.typingPrint('Wrong Selection, Square Taken. Try Again!\n')
                             raise ValueError
                         
-                    except ValueError:
+                    except (ValueError,KeyboardInterrupt):
                         pass
                     else:
                         squareVal[square] = 'X'

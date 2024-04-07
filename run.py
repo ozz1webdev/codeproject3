@@ -12,33 +12,20 @@ def mainScreen():
     print(ui.menu)
     menu_selection = input("Select your option: ")
 
-#print the logo
-print(f"\033[1;34;40m {word_art.logo}")
-
-#print welcome text
-gf.typingPrint("Welcome to Tic Tac Toe Game have fun\n")
-print("------------------------------------\n")
-
-#spining cursor
-def spin_cursor():
-    spin = ['\\', '|', '/', '-', '\\', '|', '/', '-' ]
-    print("Computer Calculating ...")
-    for e in range (5):
-        for i in range(len(spin)):
-            sys.stdout.write("\b%s" % spin[i])
-            sys.stdout.flush()
-            time.sleep(0.2)
-
 #print menu to user
 menu_selection = '0'
 while menu_selection != 3:
     try:
+        gf.clearScreen()
+        print(f"\033[1;34;40m {word_art.logo}")
+        gf.typingPrint("Welcome to Tic Tac Toe Game have fun\n")
+        print("------------------------------------\n")
         print(ui.menu) #print the menu
         menu_selection = input("Select your option: ") #user menu selection
 
-    except (RuntimeError,ValueError):
+    except (RuntimeError,ValueError,KeyboardInterrupt):
         print("Wrong Selection. Try Again!")
-        time.sleep(20)
+        time.sleep(0.1)
         pass
     
     else:
