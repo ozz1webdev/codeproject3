@@ -18,39 +18,31 @@ def setMark2(boardSel,square,mark):
     gf.clearScreen()
     print(word_art.logo)
     return boardSel
-def setMark(boardNr,boardSel,square,mark):
-    boardList = list(boardSel)
+def setMark(squareVal,boardNr,boardSel,square,mark):
+    
     if boardNr == 1:
-        if square == 1:
-            pos = boardList.index('1')
-            boardList[pos] = mark
-        if square == 2:
-            pos = boardList.index('2')
-            boardList[pos] = mark
-        if square == 3:
-            pos = boardList.index('3')
-            boardList[pos] = mark
-        if square == 4:
-            pos = boardList.index('4')
-            boardList[pos] = mark
-        if square == 5:
-            pos = boardList.index('5')
-            boardList[pos] = mark
-        if square == 6:
-            pos = boardList.index('6')
-            boardList[pos] = mark
-        if square == 7:
-            pos = boardList.index('7')
-            boardList[pos] = mark
-        if square == 8:
-            pos = boardList.index('8')
-            boardList[pos] = mark
-        if square == 9:
-            pos = boardList.index('9')
-            boardList[pos] = mark
-    print(pos)
-    input()
-    boardSel = ''.join(boardList)
+        boardList = list(board.board1)
+
+        for i in range(len(squareVal)):
+            if squareVal[i] == 'X':
+                boardList[boardList.index(str(i))] = Fore.RED + 'X'  + Fore.BLUE
+            if squareVal[i] == 'O':
+                boardList[boardList.index(str(i))] = Fore.GREEN + 'O' + Fore.BLUE
+            else:
+                pass
+
+    if boardNr == 2:
+        boardList = list(board.board2)
+
+        for i in range(len(squareVal)):
+            if squareVal[i] == 'X':
+                boardList[boardList.index(str(i))] = Fore.RED + 'X'  + Fore.BLUE
+            if squareVal[i] == 'O':
+                boardList[boardList.index(str(i))] = Fore.GREEN + 'O' + Fore.BLUE
+            else:
+                pass
+    
+    boardSel = ''.join(map(str,boardList))
     return boardSel
 
 def checkWin(squareVal):
@@ -192,7 +184,7 @@ def runGame():
                     else:
                         squareVal[square] = 'X'
                         #boardSel = setMark(boardNr,boardSel,square,'\033[1;31;40m'+ 'X' + '\033[1;34;40m')
-                        boardSel = setMark(boardNr,boardSel,square,Fore.RED + 'X' + Fore.BLUE)
+                        boardSel = setMark(squareVal,boardNr,boardSel,int(square),Fore.RED + "X " + Fore.BLUE + "\b")
                         print(boardSel)
                         break
                 winStatus = checkWin(squareVal)
@@ -200,9 +192,9 @@ def runGame():
                     print("Computer turn ...")
                     spin_cursor()
                     #boardSel,square = ai.compTurn(boardNr,boardSel,squareVal)
-                    compPos = ai.compTurn(boardNr,boardSel,squareVal)
+                    compPos = ai.compTurn(squareVal)
                     squareVal[compPos] = 'O'
-                    boardSel = setMark(boardNr,boardSel,compPos,Fore.GREEN + 'O' + Fore.BLUE)
+                    boardSel = setMark(squareVal,boardNr,boardSel,int(compPos),Fore.GREEN + "O " + Fore.BLUE + "\b")
                     winStatus = checkWin(squareVal)
                     print(boardSel)
                 if winStatus == 'win':

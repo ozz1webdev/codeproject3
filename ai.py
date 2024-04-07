@@ -1,7 +1,7 @@
 import game
 from colorama import Fore
 
-def compTurn(boardNr,boardSel,squareval):
+def compTurn(squareval):
 #check if Computer can win
     pos = 0
     while True:
