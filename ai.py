@@ -2,8 +2,9 @@ import game
 from colorama import Fore
 
 def compTurn(squareval):
-#check if Computer can win
     pos = 0
+
+    #check if computer can win
     while True:
         try:
             if squareval[1] == 'O' and squareval[2] == 'O' and squareval[3] == 0:
@@ -158,14 +159,14 @@ def compTurn(squareval):
     #choise square
         finally:
             if pos == 0:
-                if squareval[5] == 0 :
-                    pos = 5
-                    break
-                elif squareval[1] == 0:
+                if squareval[1] == 0 :
                     pos = 1
                     break
                 elif squareval[3] == 0:
                     pos = 3
+                    break
+                elif squareval[5] == 0:
+                    pos = 5
                     break
                 elif squareval[7] == 0:
                     pos = 7
@@ -187,8 +188,5 @@ def compTurn(squareval):
                     break
             else:
                 break
-
-#    boardSel = game.setMark(boardSel,pos,'\033[1;32;40m'+ 'O' + '\033[1;34;40m')
-    #boardSel = game.setMark(boardNr,boardSel,pos,Fore.GREEN + 'O' + Fore.BLUE)
-    print(f"Computer Pos : {pos}")
+    
     return pos

@@ -136,6 +136,7 @@ def runGame():
     playerScore = gf.getScore()[0]
     computerScore = gf.getScore()[1]
     draw = gf.getScore()[2]
+    playFirst = True
 
     while selection != '3':
         squareVal = [0,0,0,0,0,0,0,0,0,0]
@@ -168,7 +169,28 @@ def runGame():
                 print(word_art.logo)
                 print(f"Player : "+Fore.RED+str(playerScore)+Fore.BLUE + "   Computer : "+Fore.GREEN+str(computerScore)+Fore.BLUE + "   Draw : "+str(draw)+"\n")
                 print(boardSel)
+
+                while playFirst:
+                    gf.typingPrint("Do you like to play first ? (y/n): ")
+                    playFirst = input()
+                    if playFirst == 'y' or playFirst == 'Y' or playFirst == 'yes' or playFirst == 'Yes':
+                        playFirst = False
+                        break
+                    else :
+                        gf.typingPrint("Computer will play first.\n")
+                        time.sleep(1)
+                        spin_cursor()
+                        compPos = ai.compTurn(squareVal)
+                        squareVal[compPos] = 'O'
+                        boardSel = setMark(squareVal,boardNr,boardSel,int(compPos),Fore.GREEN + "O " + Fore.BLUE + "\b")
+                        gf.clearScreen()
+                        print(word_art.logo)
+                        print(f"Player : "+Fore.RED+str(playerScore)+Fore.BLUE + "   Computer : "+Fore.GREEN+str(computerScore)+Fore.BLUE + "   Draw : "+str(draw)+"\n")
+                        print(boardSel)
+                        playFirst = False
+                        break
                 while True:
+                    
                     try:
                         gf.typingPrint('Your turn enter Square Number: ')
                         square = int(input())
