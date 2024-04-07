@@ -2,6 +2,10 @@ import game
 from colorama import Fore
 
 def compTurn(squareval):
+    """
+        the computer logic
+    """
+
     pos = 0
 
     #check if computer can win

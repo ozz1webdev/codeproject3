@@ -3,8 +3,11 @@ import globalFunc as gf
 import sys,time
 from colorama import Fore
 
-#spining cursor
+#spining cursor function
 def spin_cursor():
+    """
+        spinning cursor to show the computer is thinking
+    """
     spin = ['\\', '|', '/', '-', '\\', '|', '/', '-' ]
     print("Computer Calculating ...")
     for e in range (1):
@@ -13,13 +16,10 @@ def spin_cursor():
             sys.stdout.flush()
             time.sleep(0.2)
 
-def setMark2(boardSel,square,mark):
-    boardSel = boardSel.replace(str(square),mark)
-    gf.clearScreen()
-    print(word_art.logo)
-    return boardSel
 def setMark(squareVal,boardNr,boardSel,square,mark):
-    
+    """
+    places the correct mark with the correct color to board
+    """
     if boardNr == 1:
         boardList = list(board.board1)
 
@@ -48,6 +48,9 @@ def setMark(squareVal,boardNr,boardSel,square,mark):
     return boardSel
 
 def checkWin(squareVal):
+    """
+    checks if the player or the computer has won
+    """
     if squareVal[1] == squareVal[2] and squareVal[2] == squareVal[3]:
         if squareVal[1] == 'X':
             print(word_art.you_win)
@@ -132,6 +135,10 @@ def checkWin(squareVal):
 
 
 def runGame():
+    """
+        runs the game
+    """
+
     selection = ''
     playerScore = gf.getScore()[0]
     computerScore = gf.getScore()[1]

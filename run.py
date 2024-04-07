@@ -3,18 +3,19 @@ import time,sys
 import word_art,ui,game
 import globalFunc as gf
 
-
+#clear screen function
 gf.clearScreen()
 
+#display logo and menu
 def mainScreen():
     gf.clearScreen()
     print(word_art.logo)
     print(ui.menu)
     menu_selection = input("Select your option: ")
 
-#print menu to user
+#print menu to user and select an option
 menu_selection = '0'
-while menu_selection != 3:
+while menu_selection != 3: #if user not exit
     try:
         gf.clearScreen()
         print(f"\033[1;34;40m {word_art.logo}")
