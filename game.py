@@ -13,10 +13,44 @@ def spin_cursor():
             sys.stdout.flush()
             time.sleep(0.2)
 
-def setMark(boardSel,square,mark):
+def setMark2(boardSel,square,mark):
     boardSel = boardSel.replace(str(square),mark)
     gf.clearScreen()
     print(word_art.logo)
+    return boardSel
+def setMark(boardNr,boardSel,square,mark):
+    boardList = list(boardSel)
+    if boardNr == 1:
+        if square == 1:
+            pos = boardList.index('1')
+            boardList[pos] = mark
+        if square == 2:
+            pos = boardList.index('2')
+            boardList[pos] = mark
+        if square == 3:
+            pos = boardList.index('3')
+            boardList[pos] = mark
+        if square == 4:
+            pos = boardList.index('4')
+            boardList[pos] = mark
+        if square == 5:
+            pos = boardList.index('5')
+            boardList[pos] = mark
+        if square == 6:
+            pos = boardList.index('6')
+            boardList[pos] = mark
+        if square == 7:
+            pos = boardList.index('7')
+            boardList[pos] = mark
+        if square == 8:
+            pos = boardList.index('8')
+            boardList[pos] = mark
+        if square == 9:
+            pos = boardList.index('9')
+            boardList[pos] = mark
+    print(pos)
+    input()
+    boardSel = ''.join(boardList)
     return boardSel
 
 def checkWin(squareVal):
@@ -101,11 +135,6 @@ def checkWin(squareVal):
         time.sleep(1)
         return 'draw'
 
-def addColors(boardSel):
-    boardSel.replace('X','\033[1;31;40m X')# \033[1;34;40m')
-    boardSel.replace('O','\033[1;32;40m O')# \033[1;34;40m')
-            
-    return boardSel
 
 def runGame():
     selection = ''
@@ -119,9 +148,11 @@ def runGame():
         try:
             if board_selection == '1':
                 boardSel = board.board1
+                boardNr = 1
                 pass
             elif board_selection == '2':
                 boardSel = board.board2
+                boardNr = 2
                 pass
             elif board_selection == '3':
                 break
@@ -138,14 +169,16 @@ def runGame():
             while True: #game loop
                 gf.clearScreen()
                 print(word_art.logo)
-                addColors(boardSel)
-                print(f"Player Score: {playerScore}     Computer Score: {computerScore}     Draw: {draw}")
+                print(f"Score :    Player : {playerScore}     Computer : {computerScore}     Draw : {draw}")
                 print(boardSel)
+                #boardSel.replace('X','\033[1;31;40m X'+'\033[1;34;40m') # \033[1;34;40m')
+                #boardSel.replace('O','\033[1;32;40m O')# \033[1;34;40m')
                 #print(squareVal) 
                 while True:
                     try:
                         gf.typingPrint('Your turn enter Square Number: ')
                         square = int(input())
+
                         if square < 1 or square > 9:
                             gf.typingPrint('Wrong Selection. Try Again!\n')
                             raise ValueError
@@ -153,21 +186,23 @@ def runGame():
                         if squareVal[square] != 0:
                             gf.typingPrint('Wrong Selection, Square Taken. Try Again!\n')
                             raise ValueError
-
+                        
                     except ValueError:
-                        if square < 1 or square > 9:
-                            time.sleep(1)
+                        pass
                     else:
                         squareVal[square] = 'X'
-                        boardSel = setMark(boardSel,square,'X')
+                        #boardSel = setMark(boardNr,boardSel,square,'\033[1;31;40m'+ 'X' + '\033[1;34;40m')
+                        boardSel = setMark(boardNr,boardSel,square,Fore.RED + 'X' + Fore.BLUE)
                         print(boardSel)
                         break
                 winStatus = checkWin(squareVal)
                 if winStatus == "continue":
                     print("Computer turn ...")
                     spin_cursor()
-                    boardSel,square = ai.compTurn(boardSel,squareVal)
-                    squareVal[square] = 'O'
+                    #boardSel,square = ai.compTurn(boardNr,boardSel,squareVal)
+                    compPos = ai.compTurn(boardNr,boardSel,squareVal)
+                    squareVal[compPos] = 'O'
+                    boardSel = setMark(boardNr,boardSel,compPos,Fore.GREEN + 'O' + Fore.BLUE)
                     winStatus = checkWin(squareVal)
                     print(boardSel)
                 if winStatus == 'win':

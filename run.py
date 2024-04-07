@@ -33,8 +33,6 @@ def spin_cursor():
 menu_selection = '0'
 while menu_selection != 3:
     try:
-        gf.clearScreen() #clear screen
-        print(word_art.logo) #print the logo
         print(ui.menu) #print the menu
         menu_selection = input("Select your option: ") #user menu selection
 

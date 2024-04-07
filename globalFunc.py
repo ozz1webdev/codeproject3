@@ -1,5 +1,5 @@
 from os import system, name
-import time,sys
+import time,sys,board
 
 #define typingtext effect
 def typingPrint(text):

@@ -1,6 +1,7 @@
 import game
+from colorama import Fore
 
-def compTurn(boardSel,squareval):
+def compTurn(boardNr,boardSel,squareval):
 #check if Computer can win
     pos = 0
     while True:
@@ -187,5 +188,7 @@ def compTurn(boardSel,squareval):
             else:
                 break
 
-    boardSel = game.setMark(boardSel,pos,'O')
-    return boardSel,pos
+#    boardSel = game.setMark(boardSel,pos,'\033[1;32;40m'+ 'O' + '\033[1;34;40m')
+    #boardSel = game.setMark(boardNr,boardSel,pos,Fore.GREEN + 'O' + Fore.BLUE)
+    print(f"Computer Pos : {pos}")
+    return pos
