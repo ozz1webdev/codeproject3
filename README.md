@@ -12,17 +12,17 @@ Tic Tac Toe is a game for two players, X and O, who take turns marking the space
 
 ##Features
 
-* The Menu
+* The Menu <br>
 ![Select Option](assets/readme-imgs/menu.jpg)
 
-* Menu Option 2
+* Menu Option 2 <br>
 ![Menu Option  2](assets/readme-imgs/rules.jpg)
 
-* Menu Option 1 Start the Game and Select board style
-![Menu Option 1 Start the Game and Select board style](/assets/readme-imgs/board-select.jpg)
+* Menu Option 1 Start the Game and Select board style <br>
+![Menu Option 1 Start the Game and Select board style](assets/readme-imgs/board-select.jpg)
 
-* Board 1 Gameplay
+* Board 1 Gameplay <br>
 ![Board 1](assets/readme-imgs/board1.jpg)
 
-* Board 2 Gameplay
+* Board 2 Gameplay <br>
 ![Board 2](assets/readme-imgs/board2.jpg)
