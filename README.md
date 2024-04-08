@@ -10,7 +10,7 @@ Tic Tac Toe is a game for two players, X and O, who take turns marking the space
 4. If the entire board is filled and there is no winner, the game is a draw. <br>
     Good Luck! :)
 
-##Features
+### Features
 
 * The Menu <br>
 ![Select Option](assets/readme-imgs/menu.jpg)
@@ -26,3 +26,15 @@ Tic Tac Toe is a game for two players, X and O, who take turns marking the space
 
 * Board 2 Gameplay <br>
 ![Board 2](assets/readme-imgs/board2.jpg)
+
+### Winning Options
+
+* Win in a Row <br>
+![winrow](assets/readme-imgs/winrow.jpg)
+
+* Win in a Column <br>
+![wincolumn](assets/readme-imgs/wincolumn.jpg)
+
+* Win Diagonal <br>
+![windiagonal](assets/readme-imgs/windiagonal.jpg)
+
