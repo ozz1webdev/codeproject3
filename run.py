@@ -1,19 +1,24 @@
-from os import system, name
-import time,sys
-import word_art,ui,game
+import time
+import word_art
+import ui
+import game
 import globalFunc as gf
 
-#clear screen function
+# clear screen function
 gf.clearScreen()
 
-#display logo and menu
+# display logo and menu
+
+
 def mainScreen():
     gf.clearScreen()
     print(word_art.logo)
     print(ui.menu)
     menu_selection = input("Select your option: ")
 
-#print menu to user and select an option
+# print menu to user and select an option
+
+
 menu_selection = '0'
 while menu_selection != 3: #if user not exit
     try:
@@ -24,11 +29,11 @@ while menu_selection != 3: #if user not exit
         print(ui.menu) #print the menu
         menu_selection = input("Select your option: ") #user menu selection
 
-    except (RuntimeError,ValueError,KeyboardInterrupt):
+    except (RuntimeError, ValueError, KeyboardInterrupt):
         print("Wrong Selection. Try Again!")
         time.sleep(0.1)
         pass
-    
+
     else:
         if menu_selection == '1': #start the game
             game.runGame()

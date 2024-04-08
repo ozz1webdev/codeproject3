@@ -1,7 +1,8 @@
-# [Tic Tac Toe] (http://ozz1.ddns.net)
+# [Tic Tac Toe](http://ozz1.ddns.net)
 
 Tic Tac Toe is a game for two players, X and O, who take turns marking the spaces in a 3×3 grid. The player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row wins the game.
 
+[Click here to play the Game](http://ozz1.ddns.net)
 ## How to play
 
 1. The game is played on a 3x3 board
@@ -38,3 +39,14 @@ Tic Tac Toe is a game for two players, X and O, who take turns marking the space
 * Win Diagonal <br>
 ![windiagonal](assets/readme-imgs/windiagonal.jpg)
 
+
+## Validator Testing
+Checked in PEP8
+ - No Errors
+![PEP8](assets/readme-imgs/pep8.jpg)
+
+## Deployment
+I deploy this Project on my home server
+
+## Credits
+The word art are made by https://www.fancytextpro.com/
